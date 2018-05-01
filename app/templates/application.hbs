@@ -1,5 +1,8 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{head-layout}}
 
-{{outlet}}
+<h2>Who is Ted Cruz?</h2>
+<p>Here's a clue:</p>
+
+{{#with (take 1 (shuffle model.clues)) as |clue|}}
+  {{clue-image image=clue.image text=clue.text}}
+{{/with}}
