@@ -1,0 +1,10 @@
+{{#if embed.html }}
+  {{{embed.html}}}
+{{else}}
+  <img src="{{image.url}}" width={{image.dimensions.width}} height={{image.dimensions.height}} alt="">
+{{/if}}
+<figcaption>
+  {{prismic-html text}}
+</figcaption>
+
+{{yield}}
