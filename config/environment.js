@@ -16,6 +16,9 @@ module.exports = function(environment) {
         Date: false
       }
     },
+    fastboot: {
+      hostWhitelist: ['cruzclues.com', 'staging.cruzclues.com', /^localhost:\d+$/]
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
