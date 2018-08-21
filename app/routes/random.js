@@ -1,14 +1,9 @@
 import Route from '@ember/routing/route';
+import { inject } from '@ember/service';
 
 export default Route.extend({
+  cluesQueue: inject(),
   model() {
-    return this.store.loadAll('clue');
-  },
-
-  afterModel(model) {
-    let clues  = model.toArray();
-    let random = clues[Math.floor(Math.random() * (clues.length))];
-    this.transitionTo('clue', random.get('id'));
-    this._super(...arguments);
+    this.transitionTo('clue', this.get('cluesQueue').get('nextId'));
   }
 });

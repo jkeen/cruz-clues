@@ -2,7 +2,10 @@
 <h2>Who is Ted Cruz?</h2>
 <p>Here's a clue:</p>
 
-{{cruz-clue embed=model.embed image=model.image text=model.text}}
+{{clue-image embed=model.currentClue.embed image=model.currentClue.image text=model.currentClue.text}}
+
+{{!-- {{clue-image embed=model.nextClue.embed image=model.nextClue.image text=model.nextClue.text}} --}}
+
 
 {{#link-to 'random'}}
   Next Clue

@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  tagName: 'figure'
+  tagName: 'figure',
+  classNames: ['cruz-clue']
 });

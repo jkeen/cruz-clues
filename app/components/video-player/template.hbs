@@ -1,0 +1,25 @@
+<div class="video-player-content">
+  {{!-- {{#if giphyId}}
+    <div class="video-player-overlay">
+        <iframe src="https://giphy.com/embed/{{giphyId}}" width="560" height="315" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    </div>
+  {{/if}} --}}
+
+  {{ember-youtube
+    class="video-player-embed"
+    ytid=ytid
+    playerVars=playerVars
+    delegate=this
+    delegate-as="ytPlayer"
+    playing="ytPlaying"
+    paused="ytPaused"
+    ended="ytEnded"
+    buffering="ytBuffering"
+  }}
+
+  {{!-- {{#unless (and isReady playingUnmuted)}}
+    <button class="unmute-and-play-video" {{action 'triggerPlay'}}>Unmute Video</button>
+  {{/unless}} --}}
+</div>
+
+{{yield (hash playVideo=(action 'triggerPlay'))}}
