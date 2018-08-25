@@ -7,9 +7,11 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route("clue", { path: "/clue/:id" })
   this.route('random', {path: "/clue/random"});
   this.route('about');
+  this.route('clues', {path: 'clues'}, function() {
+    this.route('clue', {path: '/:id'});
+  });
 });
 
 export default Router;

@@ -16,20 +16,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-
-    let ytid = this.get('url').split('=')[1];
-    this.set('ytid', ytid);
-
-    this.set('playerVars', {
-      autoplay: 1,
-      showinfo: 0,
-      fs: 0,
-      iv_load_policy: 1,
-      playsinline: 1,
-      modestbranding: 1,
-      rel: 0,
-      mute: 1
-    });
+    this.initializeVideo();
   },
 
   forceInitialPlay: task(function * () {
@@ -61,6 +48,32 @@ export default Component.extend({
       this.set('ytPlayer.playerVars', this.get('playerVars'));
     }
   }),
+
+  initializeVideo() {
+    let ytid = this.get('embed.embed_url').split('=')[1];
+
+    if (!ytid) {
+      ytid = this.get('embed.embed_url').split('/').pop()
+    }
+
+    this.set('ytid', ytid);
+
+    this.set('playerVars', {
+      autoplay: 1,
+      showinfo: 0,
+      fs: 0,
+      iv_load_policy: 1,
+      playsinline: 1,
+      modestbranding: 1,
+      rel: 0,
+      mute: 1
+    });
+  },
+
+  didUpdateAttrs() {
+    this._super(...arguments);
+    this.initializeVideo();
+  },
 
   actions: {
     triggerPlay() {

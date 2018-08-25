@@ -1,0 +1,68 @@
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin clip-path($clip) {
+  -webkit-clip-path: $clip;
+  -moz-clip-path: $clip;
+  -ms-clip-path: $clip;
+  clip-path: $clip;
+}
+
+@mixin unstyled-input() {
+  margin: auto;
+  border:0;
+  background:none;
+  box-shadow: none!important;
+  outline: none;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+}
+
+@mixin absolute-fill($top:0, $right:0, $bottom:0, $left:0 ) {
+  position:absolute;
+  left:$left;
+  right:$right;
+  bottom:$bottom;
+  top:$top;
+}
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin spinner($color: $twyla-red) {
+  display:block;
+	width: 25px;
+	height: 25px;
+	clear: both;
+	margin: 20px auto;
+	border: 4px rgba($color,0.25) solid;
+	border-top: 4px rgba($color,1) solid;
+	border-radius: 50%;
+
+	animation: rotateCircle .6s infinite linear;
+
+  @keyframes rotateCircle {
+  	from { transform: rotate(0deg); }
+  	to { transform: rotate(359deg); }
+  }
+}

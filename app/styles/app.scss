@@ -1,0 +1,210 @@
+// HELPERS
+@import "vendor/flexbox";
+@import "vendor/include_media";
+@import "helpers";
+
+body, html {
+  padding: 0;
+  margin: 0;
+  background: url(/assets/flag.jpg) no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+a {
+  color: #FFF;
+}
+
+.cruz-headline {
+  font-size: 30px;
+  line-height: 30px;
+  padding: 25px 50px 20px;
+  border-bottom: 2px solid #FFF;
+
+  font-weight: normal;
+  display: inline-block;
+  margin-bottom: 0;
+  white-space: nowrap;
+
+  @include media(">tablet") {
+    font-size: 60px;
+    line-height: 60px;
+    padding: 25px 50px 20px;
+    border-bottom: 5px solid #FFF;
+  }
+
+}
+
+.cruz-tagline {
+  margin-top: 15px;
+  font-size: 20px;
+  padding-top:0;
+  font-weight: normal;
+  white-space: nowrap;
+
+  @include media(">tablet") {
+    font-size: 30px;
+  }
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  display: block;
+  // min-height: 100vh;
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  font-family: "Ledger";
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+
+  .flex-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .clues-view {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    flex-grow: 2;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    $width: 80vw;
+
+    iframe {
+      width: $width!important;
+      height: calc((#{$width} * 9) / 16); /* 100/56.25 = 560/315 = 1.778 */
+    }
+  }
+
+  .clue figcaption {
+    display: block;
+  }
+
+  .flex-action {
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+    align-content: center;
+  }
+
+  .flex-footer {
+    font-size: 15px;
+
+    @include media(">tablet") {
+      font-size: 14px;
+    }
+
+    opacity: 0.8;
+    padding-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1.1;
+
+    .made-by {
+      border-left: 1px solid #FFF;
+      border-right: 1px solid #FFF;
+      margin: 0 10px;
+      padding: 0 10px;
+    }
+  }
+
+  a.next-clue {
+    background: #49749D;
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.50);
+    border-radius: 3px;
+    font-size: 20px;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    padding: 7px 15px;
+  }
+
+
+}
+
+
+
+
+//
+// .clues-viewer {
+//   position:relative;
+//   overflow:hidden;
+//
+//   width:100%;
+//   max-height:80vh;
+//   // max-height:625px + 125px;
+//   margin-top:-4px;
+//   overflow:hidden;
+//   @include media(">tablet") {
+//     height:auto;
+//     @include aspect-ratio(1.7, 1);
+//   }
+//
+//   .clues-views {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//
+//
+//   .clues-view {
+//     @include absolute-fill(0, 0, 0, 0);
+//     display:none;
+//
+//     background-repeat:no-repeat;
+//     background-position:center center;
+//     background-size:cover;
+//
+//     display: flex;
+//     flex-direction: column;
+//     text-align: center;
+//     justify-content: center;
+//     align-items: center;
+//   }
+//
+//   .clues-view-next {
+//     display: flex;
+//     z-index:1;
+//     opacity:1;
+//   }
+//
+//   .clues-view-current {
+//     display: flex;
+//     z-index:5;
+//     opacity:0;
+//     visibility:visible;
+//     transition:
+//       opacity linear 0.5s 0.2s,
+//       -webkit-clip-path 0.5s ease-in-out,
+//       clip-path 0.5s ease-in-out;
+//   }
+//
+//   .clues-view {
+//     @include clip-path(polygon(0 0, 125% 0%, 100% 100%, -25%  100%));
+//   }
+//
+//   .clues-view-current {
+//     @include clip-path(polygon(0  0,  0  0, -25% 100%, -25% 100%));
+//   }
+// }
+
+.animated-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}

@@ -1,0 +1,20 @@
+<div class="flex-container">
+  <div class="flex-header">
+    <h1 class="cruz-headline">Who is Ted Cruz?</h1>
+    <h2 class="cruz-subhead">Here's a clue:</h2>
+  </div>
+
+  {{outlet}}
+
+  <div class="flex-action">
+    {{#link-to 'random' class="next-clue"}}
+      Next Clue
+    {{/link-to}}
+  </div>
+  
+  <div class="flex-footer">
+    <a class="new-clue" href="mailto:tips@cruzclues.com">Submit a new clue</a>
+    <span class="made-by">Made by people who are so tired of ted cruz</span>
+    <a class="complaints" href="tel:+1-248-434-5508">Complaints</a>
+  </div>
+</div>

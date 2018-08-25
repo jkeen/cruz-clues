@@ -1,0 +1,10 @@
+<figure class="clue">
+  {{#if clue.embed.html }}
+    {{video-player embed=clue.embed}}
+  {{else}}
+    <img src="{{clue.image.url}}" width="{{imageWidth}}" height="{{imageHeight}}">
+  {{/if}}
+  <figcaption>
+    {{prismic-html clue.text}}
+  </figcaption>
+</figure>

@@ -9,11 +9,9 @@ export default Route.extend({
     queue.set('currentId', currentId);
 
     return RSVP.hash({
+      allClues: this.store.peekAll('clue'),
       currentClue: this.store.peekRecord('clue', currentId),
       nextClue: this.store.peekRecord('clue', this.get('cluesQueue').get('nextId'))
     })
-  },
-  afterModel(model) {
-    this.get('cluesQueue').markClueSeen(model.currentClue.id);
   }
 });

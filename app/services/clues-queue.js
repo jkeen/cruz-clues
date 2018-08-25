@@ -16,25 +16,18 @@ export default Service.extend({
   currentId: null,
 
   nextId: computed('clueIds', 'currentId', function() {
-    return this.get('clueIds').filter(i => (i !== this.get('currentId')))[0];
-  }),
+    let totalCount = this.get('clueIds').length;
 
-  followingId: computed('clueIds', function() {
-    return this.get('clueIds').filter(i => (i !== this.get('currentId')))[1];
-  }),
+    let index = this.get('clueIds').indexOf(this.get('currentId'));
 
-  markClueSeen(id) {
-    this.set('clueIds', this.get('clueIds').filter(i => (id !== i)));
-
-    if (this.get('clueIds').length === 1) {
-      // Leave on in there so we can preload the clue after the current one
-
-      let nextId = this.get('clueIds').pop();
-      let followingIds = this.shuffle(this.get('models').mapBy('id').filter(i => (nextId !== i)))
-      this.set('clueIds', [nextId].concat(followingIds));
+    if (index < (totalCount - 1)) {
+      return this.get('clueIds')[index + 1];
     }
-  },
-
+    else {
+      return this.get('clueIds')[0];
+    }
+  }),
+  
   shuffle(array) {
     let counter = array.length;
 
