@@ -16,8 +16,9 @@ module.exports = function(environment) {
         Date: false
       }
     },
+
     fastboot: {
-      hostWhitelist: ['cruzclues.com', 'staging.cruzclues.com', /^localhost:\d+$/]
+      hostWhitelist: ['cruzclues.com', 'staging.cruzclues.com', 'cruz-clues.herokuapp.com', /^localhost:\d+$/]
     },
 
     googleFonts: [
