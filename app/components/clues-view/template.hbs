@@ -1,8 +1,8 @@
 <figure class="clue">
-  {{#if clue.embed.html }}
-    {{video-player embed=clue.embed}}
+  {{#if (eq mediaType 'video') }}
+    {{video-player embed=clue.embed onPlay=(action (mut videoHasPlayed)) mediaWidth=mediaWidth mediaHeight=mediaHeight}}
   {{else}}
-    <img src="{{clue.image.url}}" width="{{imageWidth}}" height="{{imageHeight}}">
+    <img src="{{clue.image.url}}" width="{{mediaWidth}}" height="{{mediaHeight}}">
   {{/if}}
   <figcaption>
     {{prismic-html clue.text}}

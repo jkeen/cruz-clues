@@ -3,13 +3,19 @@
 @import "vendor/include_media";
 @import "helpers";
 
-body, html {
+html {
   padding: 0;
   margin: 0;
-  background: url(/assets/flag.jpg) no-repeat center center;
-  background-size: cover;
-  height: 100vh;
-  width: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: url(/assets/flag.jpg) no-repeat fixed center center;
+  // background-size: cover;
+  display: block;
+  min-height: 100vh;
+  overflow: scroll;
 }
 
 a {
@@ -19,7 +25,8 @@ a {
 .cruz-headline {
   font-size: 30px;
   line-height: 30px;
-  padding: 25px 50px 20px;
+  padding: 15px 30px 10px;
+  margin-top: 0;
   border-bottom: 2px solid #FFF;
 
   font-weight: normal;
@@ -33,11 +40,10 @@ a {
     padding: 25px 50px 20px;
     border-bottom: 5px solid #FFF;
   }
-
 }
 
-.cruz-tagline {
-  margin-top: 15px;
+.cruz-subhead {
+  margin: 10px 0 0;
   font-size: 20px;
   padding-top:0;
   font-weight: normal;
@@ -52,7 +58,8 @@ a {
   position: absolute;
   top: 0;
   display: block;
-  // min-height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 100%;
   text-align: center;
   color: #FFF;
@@ -74,19 +81,31 @@ a {
 
   .clues-view {
     display: flex;
-    width: 100%;
-    padding: 20px;
+    width: auto;
+    padding: 0;
     flex-grow: 2;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+  }
 
-    $width: 80vw;
-
-    iframe {
-      width: $width!important;
-      height: calc((#{$width} * 9) / 16); /* 100/56.25 = 560/315 = 1.778 */
+  .clues-view.video {
+    .video-player {
+      display: inline-block;
     }
+
+    .video-player-content {
+      display: inline-block;
+      margin: auto auto;
+    }
+  }
+
+
+  figure.clue {
+    margin: 0;
+    padding: 0;
   }
 
   .clue figcaption {
@@ -100,26 +119,6 @@ a {
     align-content: center;
   }
 
-  .flex-footer {
-    font-size: 15px;
-
-    @include media(">tablet") {
-      font-size: 14px;
-    }
-
-    opacity: 0.8;
-    padding-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1.1;
-
-    .made-by {
-      border-left: 1px solid #FFF;
-      border-right: 1px solid #FFF;
-      margin: 0 10px;
-      padding: 0 10px;
-    }
-  }
-
   a.next-clue {
     background: #49749D;
     box-shadow: 0 10px 40px 0 rgba(0,0,0,0.50);
@@ -130,74 +129,62 @@ a {
     text-decoration: none;
     padding: 7px 15px;
   }
+}
 
+.flex-footer {
+  font-size: 15px;
 
+  @include media(">tablet") {
+    font-size: 14px;
+  }
+
+  opacity: 0.8;
+  padding-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1.1;
+
+  .made-by {
+    border-left: 1px solid #FFF;
+    border-right: 1px solid #FFF;
+    margin: 0 10px;
+    padding: 0 10px;
+  }
 }
 
 
+.flex-container.is-fluid {
+  height: auto;
 
+  .clues-view {
+    height: auto;
+    min-height: 400px;
+  }
 
-//
-// .clues-viewer {
-//   position:relative;
-//   overflow:hidden;
-//
-//   width:100%;
-//   max-height:80vh;
-//   // max-height:625px + 125px;
-//   margin-top:-4px;
-//   overflow:hidden;
-//   @include media(">tablet") {
-//     height:auto;
-//     @include aspect-ratio(1.7, 1);
-//   }
-//
-//   .clues-views {
-//     display: flex;
-//     flex-direction: column;
-//   }
-//
-//
-//   .clues-view {
-//     @include absolute-fill(0, 0, 0, 0);
-//     display:none;
-//
-//     background-repeat:no-repeat;
-//     background-position:center center;
-//     background-size:cover;
-//
-//     display: flex;
-//     flex-direction: column;
-//     text-align: center;
-//     justify-content: center;
-//     align-items: center;
-//   }
-//
-//   .clues-view-next {
-//     display: flex;
-//     z-index:1;
-//     opacity:1;
-//   }
-//
-//   .clues-view-current {
-//     display: flex;
-//     z-index:5;
-//     opacity:0;
-//     visibility:visible;
-//     transition:
-//       opacity linear 0.5s 0.2s,
-//       -webkit-clip-path 0.5s ease-in-out,
-//       clip-path 0.5s ease-in-out;
-//   }
-//
-//   .clues-view {
-//     @include clip-path(polygon(0 0, 125% 0%, 100% 100%, -25%  100%));
-//   }
-//
-//   .clues-view-current {
-//     @include clip-path(polygon(0  0,  0  0, -25% 100%, -25% 100%));
-//   }
-// }
+}
+
+.video-player-content {
+  position: relative;
+}
+
+.unmute-and-play-video {
+  background-color: #111;
+  opacity: 0.9;
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 13px;
+  position: absolute;
+  left: 10px;
+  bottom: 40px;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 10px;
+  border: 0;
+
+  &:hover {
+    background-color: #FFF;
+    color: #000;
+  }
+}
 
 .animated-background {
   position: absolute;

@@ -6,6 +6,7 @@ export default Component.extend({
   classNames: ['video-player'],
   attributeBindings: ['ytid:data-ytid'],
   classNameBindings: ['hasPlayed', 'isMobileDevice', 'isReady'],
+  isReady: false,
 
   isMobileDevice: computed({
     get() {
@@ -23,7 +24,6 @@ export default Component.extend({
     yield waitForProperty(this, 'ytPlayer', v => !!v);
     this.set('ytPlayer.playerVars', this.get('playerVars'));
     yield waitForProperty(this, 'ytPlayer.playerState', v => v === 'ready');
-    this.set('isReady', true)
     yield timeout(200);
     this.get('ytPlayer').send('seekTo', this.get('startSeconds'));
     yield waitForProperty(this, 'ytPlayer.playerState', v => v === 'playing');
@@ -32,11 +32,12 @@ export default Component.extend({
       // mobile restrictions are strict
       yield this.get('tryUnmuting').perform();
     }
+    this.set('isReady', true)
     this.get('onPlay')(true);
   }).on('didInsertElement'),
 
   tryUnmuting: task(function * () {
-    yield timeout(500)
+    yield timeout(250)
     this.get('ytPlayer').send('unMute');
     yield timeout(200);
     if (this.get('ytPlayer.playerState') === 'playing') {
@@ -71,8 +72,14 @@ export default Component.extend({
   },
 
   didUpdateAttrs() {
-    this._super(...arguments);
     this.initializeVideo();
+
+    if (this.$('iframe').length > 0) {
+      this.$('iframe').attr('width', this.get('mediaWidth'));
+      this.$('iframe').attr('height', this.get('mediaHeight'));
+    }
+
+    this._super(...arguments);
   },
 
   actions: {
