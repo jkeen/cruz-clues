@@ -81,7 +81,13 @@ export default Component.extend(ResizeAware, {
   }),
 
   didResize(width, height) {
-    this.set('maxWidth', window.innerWidth);
+
+    let multiplier = 1;
+    if (window && window.matchMedia && window.matchMedia("(orientation: landscape)").matches) {
+      multiplier = 0.9;
+    }
+
+    this.set('maxWidth', window.innerWidth * multiplier);
     this.set('maxHeight', height * 0.8);
   },
 

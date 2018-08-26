@@ -13,7 +13,7 @@
     height=mediaHeight
   }}
 
-  {{#if (and isMobileDevice (and isReady (not isPlayingUnmuted)))}}
+  {{#if (and isMobileDevice (and isReady (not playingUnmuted)))}}
     <button class="unmute-and-play-video" {{action 'triggerPlay'}}>Unmute Video</button>
   {{/if}}
 </div>

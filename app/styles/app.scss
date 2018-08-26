@@ -117,6 +117,7 @@ a {
     flex-direction: column;
     height: 10vh;
     align-content: center;
+    margin-bottom: 25px;
   }
 
   a.next-clue {
@@ -160,6 +161,11 @@ a {
     min-height: 400px;
   }
 
+
+  .flex-action {
+    height: auto;
+    margin-bottom: 25px;
+  }
 }
 
 .video-player-content {
