@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import {inject } from '@ember/service';
 import RSVP from 'rsvp';
+import { get } from '@ember/object';
 export default Route.extend({
   cluesQueue: inject(),
   headData: inject(),
@@ -12,16 +13,15 @@ export default Route.extend({
   model(params) {
     let currentId = params.id
     let queue = this.get('cluesQueue');
-    queue.set('currentId', currentId);
-
     return RSVP.hash({
       currentClue: queue.load(currentId)
     })
   },
 
   afterModel(model) {
-    this.set('headData.title', model.currentClue.get('title'));
-    let clueImage = model.currentClue.get('image.url') || model.currentClue.get('embed.thumbnail_url');
+    let clue = model.currentClue;
+    this.set('headData.title', clue.get('title'));
+    let clueImage = (get(clue, 'image.url') || get(clue, 'embed.thumbnail_url'));
     if (clueImage) {
       this.set('headData.image', clueImage);
     }
