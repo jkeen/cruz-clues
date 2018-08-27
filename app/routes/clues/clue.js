@@ -3,9 +3,10 @@ import {inject } from '@ember/service';
 import RSVP from 'rsvp';
 export default Route.extend({
   cluesQueue: inject(),
+  headData: inject(),
 
   titleToken: function(model) {
-    return [model.currentClue.get('title')];
+    return model.currentClue.get('title');
   },
 
   model(params) {
@@ -17,26 +18,15 @@ export default Route.extend({
       currentClue: queue.load(currentId)
     })
   },
-  afterModel(model) {
-    var headTags = [
-      {
-        type: "meta",
-        tagId: "facebook-og-title",
-        attrs: {
-          property: "og:title",
-          content: `Cruz Clues | ${model.currentClue.get('title')}`
-        }
-      },
-      {
-        type: "meta",
-        tagId: "facebook-og-image",
-        attrs: {
-          property: "og:image",
-          content: 'http://cruzclues.com/assets/flag.png'
-        }
-      }
-    ];
 
-    this.set("headTags", headTags);
+  afterModel(model) {
+    this.set('headData.title', model.currentClue.get('title'));
+    let clueImage = model.currentClue.get('image.url');
+    if (clueImage) {
+      this.set('headData.image', clueImage);
+    }
+    else {
+      this.set('headData.image', null);
+    }
   }
 });

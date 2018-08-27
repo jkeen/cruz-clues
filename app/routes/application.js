@@ -3,7 +3,8 @@ export default Route.extend({
   title(tokens = []) {
     let siteName = 'Cruz Clues';
     tokens.unshift(siteName);
-    let title =  tokens.join(' | ');
+
+    let title =  tokens.filter(s => s.length > 0).join(' | ');
     return title;
   },
 
