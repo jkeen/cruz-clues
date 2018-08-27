@@ -21,7 +21,7 @@ export default Route.extend({
 
   afterModel(model) {
     this.set('headData.title', model.currentClue.get('title'));
-    let clueImage = model.currentClue.get('image.url');
+    let clueImage = model.currentClue.get('image.url') || model.currentClue.get('embed.thumbnail_url');
     if (clueImage) {
       this.set('headData.image', clueImage);
     }
