@@ -37,8 +37,13 @@ a {
   @include media(">tablet") {
     font-size: 60px;
     line-height: 60px;
-    padding: 25px 50px 20px;
+    padding: 25px 75px 20px;
     border-bottom: 5px solid #FFF;
+
+    background: url(/assets/star.png) left center no-repeat, url(/assets/star.png) right center no-repeat;
+    background-size: 40px 40px;
+     // url(assets/star.png) right center no-repeat;
+
   }
 }
 
@@ -129,6 +134,11 @@ a {
     letter-spacing: 0.5px;
     text-decoration: none;
     padding: 7px 15px;
+
+    &:active {
+      background: #2D5F8F;;
+    }
+
   }
 }
 

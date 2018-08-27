@@ -2885,6 +2885,12 @@ ember-cli-dependency-checker@^2.0.0:
     resolve "^1.5.0"
     semver "^5.3.0"
 
+"ember-cli-document-title@https://github.com/mike-north/ember-cli-document-title#route-router":
+  version "0.4.0"
+  resolved "https://github.com/mike-north/ember-cli-document-title#4ee799c3843d3c1cbaf73bb280a004f62817edee"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-cli-dotenv@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-dotenv/-/ember-cli-dotenv-2.1.0.tgz#ac9d14884cbcefb7588e06e77e40ee06445975ee"
@@ -2940,7 +2946,7 @@ ember-cli-head@^0.3.0:
     ember-cli-babel "^6.1.0"
     ember-cli-htmlbars "^2.0.1"
 
-ember-cli-head@^0.4.0:
+ember-cli-head@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/ember-cli-head/-/ember-cli-head-0.4.1.tgz#28b7ee86439746640834b232a3b34ab1329f3cf3"
   dependencies:

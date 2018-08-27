@@ -1,8 +1,10 @@
 import Service, { inject } from '@ember/service';
 import { computed } from '@ember/object';
+import { Promise } from 'rsvp';
 export default Service.extend({
   store: inject(),
-
+  fastboot: inject(),
+  isFastBoot: computed.reads('fastboot.isFastBoot'),
   init() {
     this.set('clueIds', []);
 
@@ -14,6 +16,26 @@ export default Service.extend({
   },
 
   currentId: null,
+
+  load(id) {
+    this.set('currentId', id);
+
+    let loading = new Promise((resolve) => {
+      let record = this.get('store').peekRecord('clue', id);
+      if (!this.get('isFastBoot') && ['image', 'gif'].includes(record.get('clueType'))) {
+        let image = new window.Image()
+        image.onload = function() {
+          resolve(record)
+        }
+        image.src = record.get('image.url')
+      }
+      else {
+        resolve(record);
+      }
+    });
+
+    return loading;
+  },
 
   nextId: computed('clueIds', 'currentId', function() {
     let totalCount = this.get('clueIds').length;
@@ -27,7 +49,7 @@ export default Service.extend({
       return this.get('clueIds')[0];
     }
   }),
-  
+
   shuffle(array) {
     let counter = array.length;
 

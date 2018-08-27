@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
 import { Promise } from 'rsvp';
-import { task, waitForProperty, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 import { makeArray } from '@ember/array';
 
 export default Component.extend(ResizeAware, {
@@ -13,7 +13,6 @@ export default Component.extend(ResizeAware, {
 
   init() {
     this._super(...arguments);
-    this.loadContent.perform();
   },
 
   mediaType: computed('clue.clueType', function() {
@@ -67,21 +66,7 @@ export default Component.extend(ResizeAware, {
     return this.get('biggestDimensions')[1];
   }),
 
-  loadContent: task(function * () {
-    if (this.get('mediaType') === 'image') {
-      yield new Promise((resolve) => {
-        let image = new Image();
-        image.src = this.get('clue.image.url');
-        image.onload = function() {
-          resolve();
-        }
-      })
-
-    }
-  }),
-
   didResize(width, height) {
-
     let multiplier = 1;
     if (window && window.matchMedia && window.matchMedia("(orientation: landscape)").matches) {
       multiplier = 0.9;
