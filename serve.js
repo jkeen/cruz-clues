@@ -6,11 +6,11 @@ let server = new FastBootAppServer({
   gzip: true, // Optional - Enables gzip compression.
   beforeMiddleware(app) {
     app.use((request, response, next) => {
-      // if (request.headers['x-forwarded-proto'] === 'https') {
+      if (request.headers['x-forwarded-proto'] === 'https') {
         return next();
-      // } else {
-        // return response.redirect(301, `https://${request.hostname}${request.url}`);
-      // }
+      } else {
+       return response.redirect(301, `https://${request.hostname}${request.url}`);
+      }
     });
   }
 });
