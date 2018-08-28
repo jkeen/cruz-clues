@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 export default Route.extend({
-  fastboot: inject(),
+  fastboot: service(),
   isFastBoot: computed.reads('fastboot.isFastBoot'),
-  headData: inject(),
+  headData: service(),
 
   afterModel() {
     if (!this.get('isFastBoot')) {

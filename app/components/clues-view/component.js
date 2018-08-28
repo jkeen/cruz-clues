@@ -1,50 +1,25 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
-import { Promise } from 'rsvp';
-import { task } from 'ember-concurrency';
-import { makeArray } from '@ember/array';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend(ResizeAware, {
   classNames: ['clues-view'],
-  classNameBindings: ['mediaType', 'isFluid'],
+  classNameBindings: ['clue.mediaType', 'isFluid'],
   resizeWidthSensitive: true,
   resizeHeightSensitive: true,
 
   init() {
     this._super(...arguments);
+    this.didResize()
   },
 
-  mediaType: computed('clue.clueType', function() {
-    let imageTypes = makeArray(['gif', 'image']);
-    if (imageTypes.includes(this.get('clue.clueType'))) {
-      return 'image';
-    }
-    else if (this.get('clue.clueType') === 'video') {
-      return 'video';
-    }
-  }),
+  maxDimensions: computed('clue.mediaAspectRatio', 'availableWidth', 'availableHeight', function() {
+    let desiredAspectRatio = this.get('clue.mediaAspectRatio');
+    let containerWidth     = this.get('availableWidth');
+    let containerHeight    = this.get('availableHeight');
 
-  precisionRound(number, precision) {
-    var factor = Math.pow(10, precision);
-    return Math.round(number * factor) / factor;
-  },
-
-  aspectRatio: computed('clue.image.dimensions{width,height}', 'clue.clueType', 'embed{height,width}', function() {
-    if (this.get('mediaType') === 'image') {
-      return this.precisionRound((this.get('clue.image.dimensions.width') / this.get('clue.image.dimensions.height')), 5);
-    }
-    else {
-      return this.precisionRound((this.get('clue.embed.width') / this.get('clue.embed.height')), 5);
-    }
-  }),
-
-  biggestDimensions: computed('aspectRatio', 'maxWidth', 'maxHeight', function() {
-    let desiredAspectRatio = this.get('aspectRatio');
-    let containerWidth = this.get('maxWidth');
-    let containerHeight = this.get('maxHeight');
-
-    if (!(containerWidth && containerHeight && desiredAspectRatio)) {
+    if (!(desiredAspectRatio && containerWidth && containerHeight)) {
       return [0, 0];
     }
 
@@ -59,11 +34,20 @@ export default Component.extend(ResizeAware, {
     }
   }),
 
-  mediaWidth: computed('biggestDimensions', 'biggestDimensions.@each', function() {
-    return this.get('biggestDimensions')[0];
+  clueStyle: computed('maxWidth', 'maxHeight', function() {
+    return htmlSafe(`width: ${this.get('maxWidth')}px; height: ${this.get('maxHeight')}px;`);
   }),
-  mediaHeight: computed('biggestDimensions', 'biggestDimensions.@each', function() {
-    return this.get('biggestDimensions')[1];
+
+  maxWidth: computed('maxDimensions', 'maxDimensions.@each', function() {
+    return this.get('maxDimensions')[0];
+  }),
+
+  maxHeight: computed('maxDimensions', 'maxDimensions.@each', function() {
+    return this.get('maxDimensions')[1];
+  }),
+
+  ready: computed('maxWidth', 'maxHeight', function() {
+    return (this.get('maxWidth') > 0 && this.get('maxHeight') > 0 && window);
   }),
 
   didResize(width, height) {
@@ -72,8 +56,8 @@ export default Component.extend(ResizeAware, {
       multiplier = 0.9;
     }
 
-    this.set('maxWidth', window.innerWidth * multiplier);
-    this.set('maxHeight', height * 0.8);
+    this.set('availableWidth', window.innerWidth * multiplier);
+    this.set('availableHeight', height * 0.8);
   },
 
   didInsertElement() {

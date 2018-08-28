@@ -1,10 +1,12 @@
-import Service, { inject } from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { Promise } from 'rsvp';
 export default Service.extend({
-  store: inject(),
-  fastboot: inject(),
+  store     : service(),
+  fastboot  : service(),
   isFastBoot: computed.reads('fastboot.isFastBoot'),
+  currentId : null,
+
   init() {
     this.set('clueIds', []);
 
@@ -15,23 +17,21 @@ export default Service.extend({
     this._super(...arguments);
   },
 
-  currentId: null,
-
   load(id) {
     this.set('currentId', id);
-
     let loading = new Promise((resolve) => {
-      let record = this.get('store').peekRecord('clue', id);
-      if (!this.get('isFastBoot') && ['image', 'gif'].includes(record.get('clueType'))) {
-        let image = new window.Image()
-        image.onload = function() {
-          resolve(record)
+      return this.get('store').findRecord('clue', id).then(record => {
+        if (!this.get('isFastBoot') && ['image', 'gif'].includes(record.get('clueType'))) {
+          let image = new window.Image()
+          image.onload = function() {
+            resolve(record)
+          }
+          image.src = record.get('image.url')
         }
-        image.src = record.get('image.url')
-      }
-      else {
-        resolve(record);
-      }
+        else {
+          resolve(record);
+        }
+      })
     });
 
     return loading;
@@ -52,15 +52,12 @@ export default Service.extend({
 
   shuffle(array) {
     let counter = array.length;
-
     // While there are elements in the array
     while (counter > 0) {
         // Pick a random index
         let index = Math.floor(Math.random() * counter);
-
         // Decrease counter by 1
         counter--;
-
         // And swap the last element with it
         let temp = array[counter];
         array[counter] = array[index];

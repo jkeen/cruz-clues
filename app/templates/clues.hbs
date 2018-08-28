@@ -15,8 +15,8 @@
   </div>
 
   <div class="flex-footer">
-    <a class="new-clue" href="mailto:tips@cruzclues.com">Submit a new clue</a>
+    <a class="new-clue" {{action 'trackTipClick' preventDefault=false}} href="mailto:tips@cruzclues.com">Submit a new clue</a>
     <span class="made-by">Made by people who are so tired of Ted Cruz</span>
-    <a class="complaints" href="tel:+1-248-434-5508">Complaints</a>
+    <a class="complaints" {{action 'trackComplaintClick' preventDefault=false}}  href="tel:+1-248-434-5508">Complaints</a>
   </div>
 </div>

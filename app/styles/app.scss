@@ -11,11 +11,15 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background: url(/assets/flag.jpg) no-repeat fixed center center;
-  // background-size: cover;
+  background: url(/assets/flag.jpg) no-repeat fixed left center;
+  background-size: cover;
   display: block;
   min-height: 100vh;
   overflow: scroll;
+  @include media("<tablet") {
+    // background: url(/assets/flag.jpg) no-repeat left center;
+    // background-size: cover;
+  }
 }
 
 a {
@@ -108,10 +112,33 @@ a {
     }
   }
 
-
   figure.clue {
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
+  }
+
+  @keyframes placeHolderShimmer{
+      0%{
+          background-position: -468px 0
+      }
+      100%{
+          background-position: 468px 0
+      }
+  }
+
+
+  .clue .clue-inner {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1) 8%, rgba(255, 255, 255, 0.05) 18%, rgba(255, 255, 255, 0.1) 33%);
+    background-size: cover;
+    position: relative;
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.50);
   }
 
   .clue figcaption {

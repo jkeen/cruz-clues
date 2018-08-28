@@ -1,10 +1,14 @@
 <figure class="clue">
-  {{#if (eq mediaType 'video') }}
-    {{video-player embed=clue.embed onPlay=(action (mut videoHasPlayed)) mediaWidth=mediaWidth mediaHeight=mediaHeight}}
-  {{else}}
-    <img src="{{clue.image.url}}" width="{{mediaWidth}}" height="{{mediaHeight}}">
-  {{/if}}
+  <div class="clue-inner" style={{clueStyle}}>
+    {{#if (eq clue.mediaType 'video') }}
+      {{video-player embed=clue.embed onPlay=(action (mut videoHasPlayed)) mediaWidth=maxWidth mediaHeight=maxHeight}}
+    {{else}}
+      <img src="{{clue.image.url}}" width="{{maxWidth}}" height="{{maxHeight}}">
+    {{/if}}
+  </div>
   <figcaption>
+    {{#if ready}}
     {{prismic-html clue.text}}
+    {{/if}}
   </figcaption>
 </figure>

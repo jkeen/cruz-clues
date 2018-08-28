@@ -1,15 +1,15 @@
 import EmberRouter from "@ember/routing/router";
 import config from "./config/environment";
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
 import { get } from '@ember/object';
 
 const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL,
-  headData: inject(),
-  metrics: inject(),
-  fastboot: inject(),
+  headData: service(),
+  metrics: service(),
+  fastboot: service(),
 
   setTitle(title) {
     this.get('headData').set('title', title);

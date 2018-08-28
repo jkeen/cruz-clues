@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
+
 export default Controller.extend({
-  resize: inject(),
+  resize: service(),
   init() {
     this.get('resize').on('didResize', () => {
        this.updateFluidFlag();
@@ -12,6 +14,14 @@ export default Controller.extend({
 
   updateFluidFlag() {
     this.set('isFluid', window.innerHeight < 600);
-  }
+  },
 
+  actions: {
+    trackComplaintClick() {
+      get(this, 'metrics').trackEvent('complaint', {});
+    },
+    trackTipClick() {
+      get(this, 'metrics').trackEvent('tip', {});
+    }
+  }
 });

@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
-import {inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 import { get } from '@ember/object';
 export default Route.extend({
-  cluesQueue: inject(),
-  headData: inject(),
+  cluesQueue: service(),
+  headData  : service(),
+  metrics   : service(),
 
   titleToken: function(model) {
     return model.currentClue.get('title');

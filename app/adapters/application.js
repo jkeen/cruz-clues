@@ -1,2 +1,3 @@
 import PrismicAdapter from 'ember-data-prismic/adapters/prismic';
-export default PrismicAdapter.extend({});
+import CachedShoe from 'ember-cached-shoe'
+export default PrismicAdapter.extend(CachedShoe, {});
