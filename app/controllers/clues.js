@@ -18,10 +18,18 @@ export default Controller.extend({
 
   actions: {
     trackComplaintClick() {
-      get(this, 'metrics').trackEvent('complaint', {});
+      get(this, 'metrics').trackEvent('GoogleAnalytics', {
+         category: 'ui-interaction',
+         action: 'clicked-complaint-link',
+         value: window.document.location.href
+      });
     },
     trackTipClick() {
-      get(this, 'metrics').trackEvent('tip', {});
+      get(this, 'metrics').trackEvent('GoogleAnalytics', {
+         category: 'ui-interaction',
+         action: 'clicked-submit-a-clue-link',
+         value: window.document.location.href
+      });
     }
   }
 });
