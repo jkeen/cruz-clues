@@ -29,5 +29,7 @@ export default Route.extend({
     else {
       this.set('headData.image', null);
     }
+
+    this.transitionTo('clues.clue', clue.get('uid'));
   }
 });

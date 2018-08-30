@@ -18,7 +18,10 @@ export default Service.extend({
   },
 
   load(id) {
-    this.set('currentId', id);
+    if (this.get('clueIds').includes(id)) {
+      this.set('currentId', id);      
+    }
+
     let loading = new Promise((resolve) => {
       return this.get('store').findRecord('clue', id).then(record => {
         if (!this.get('isFastBoot') && ['image', 'gif'].includes(record.get('clueType'))) {

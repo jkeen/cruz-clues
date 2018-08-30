@@ -39,6 +39,7 @@ Router.map(function() {
   this.route('clues', {path: 'clues'}, function() {
     this.route('clue', {path: '/:id'});
   });
+  this.route('preview');
 });
 
 export default Router;
