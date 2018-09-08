@@ -9,11 +9,6 @@ export default Component.extend(ResizeAware, {
   resizeWidthSensitive: true,
   resizeHeightSensitive: true,
 
-  init() {
-    this._super(...arguments);
-    this.didResize()
-  },
-
   maxDimensions: computed('clue.mediaAspectRatio', 'availableWidth', 'availableHeight', function() {
     let desiredAspectRatio = this.get('clue.mediaAspectRatio');
     let containerWidth     = this.get('availableWidth');
@@ -73,5 +68,12 @@ export default Component.extend(ResizeAware, {
 
     this._super(...arguments);
   },
+
+  actions: {
+    reportNaturalDimensions(width, height) {
+      this.get('clue').set('naturalWidth', width);
+      this.get('clue').set('naturalHeight', height);
+    }
+  }
 
 });
