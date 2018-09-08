@@ -16,7 +16,7 @@ export default PrismicDocument.extend({
   naturalWidth: null,
   naturalHeight: null,
 
-  imageUrl: or('image.url', 'imageLink.url', 'embed.url'),
+  imageUrl: or('image.url', 'imageLink.url'),
 
   mediaWidth: computed('naturalWidth', 'image.dimensions{width,height}', 'clueType', 'embed{height,width}', function() {
     if (['embed', 'imageLink'].includes(this.get('clueType'))) {

@@ -20,11 +20,12 @@ export default Route.extend({
   },
 
   afterModel(model) {
-    this.controllerFor('clue').set('onLastClue', this.get('cluesQueue.onLastClue'));
+    this.controllerFor('clues').set('onLastClue', this.get('cluesQueue.onLastClue'));
+    this.controllerFor('clues').set('isLoading', false);
 
     let clue = model.currentClue;
     this.set('headData.title', clue.get('title'));
-    let clueImage = (get(clue, 'image.url') || get(clue, 'embed.thumbnail_url'));
+    let clueImage = (get(clue, 'imageUrl') || get(clue, 'embed.thumbnail_url'));
     if (clueImage) {
       this.set('headData.image', clueImage);
     }
@@ -33,5 +34,11 @@ export default Route.extend({
     }
 
     this.transitionTo('clues.clue', clue.get('uid'));
+  },
+
+  actions: {
+    loading() {
+      this.controllerFor('clues').set('isLoading', true);
+    }
   }
 });

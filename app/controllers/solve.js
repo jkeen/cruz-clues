@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
 import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
+  metrics: service(),
   actions: {
     trackDonateClick() {
       get(this, 'metrics').trackEvent('GoogleAnalytics', {

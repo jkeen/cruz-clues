@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 
 export default Controller.extend({
+  metrics: service(),
   resize: service(),
   init() {
     this.get('resize').on('didResize', () => {

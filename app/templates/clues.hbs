@@ -15,9 +15,7 @@
       {{/link-to}}
       {{#link-to 'random'}}Research Clues Again{{/link-to}}
     {{else}}
-      {{#link-to 'random' class="next-clue"}}
-        Next Clue
-      {{/link-to}}
+      {{#link-to 'random' class="next-clue" disabled=isLoading}}Next Clue{{/link-to}}
     {{/if}}
   </div>
   {{site-footer class="flex-footer"}}

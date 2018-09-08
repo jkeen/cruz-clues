@@ -165,11 +165,14 @@ a {
     text-decoration: none;
     padding: 7px 15px;
     margin-bottom: 15px;
-    
+
     &:active {
       background: #2D5F8F;;
     }
-
+    &.disabled {
+      cursor: default;
+      opacity: 0.3;
+    }
   }
 }
 
