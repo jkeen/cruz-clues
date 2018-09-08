@@ -44,7 +44,7 @@ export default Component.extend(ResizeAware, {
     return this.get('maxDimensions')[1];
   }),
 
-  ready: computed('maxWidth', 'maxHeight', function() {
+  isReady: computed('maxWidth', 'maxHeight', function() {
     return (this.get('maxWidth') > 0 && this.get('maxHeight') > 0 && window);
   }),
 

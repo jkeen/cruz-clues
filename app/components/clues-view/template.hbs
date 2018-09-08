@@ -12,9 +12,9 @@
       {{{clue.embed.html}}}
     </div> --}}
   {{/if}}
-  <figcaption>
-    {{#if ready}}
-      {{prismic-html clueText}}
-    {{/if}}
-  </figcaption>
+  {{#if isReady}}
+    <figcaption>
+      {{{prismic-html clueText}}}
+    </figcaption>
+  {{/if}}
 </figure>
