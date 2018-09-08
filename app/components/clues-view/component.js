@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import ResizeAware from 'ember-resize/mixins/resize-aware';
 import { htmlSafe } from '@ember/string';
+import { alias } from '@ember/object/computed';
 
 export default Component.extend(ResizeAware, {
   classNames: ['clues-view'],
@@ -32,6 +33,8 @@ export default Component.extend(ResizeAware, {
   clueStyle: computed('maxWidth', 'maxHeight', function() {
     return htmlSafe(`width: ${this.get('maxWidth')}px; height: ${this.get('maxHeight')}px;`);
   }),
+
+  clueText: alias('clue.text'),
 
   maxWidth: computed('maxDimensions', 'maxDimensions.@each', function() {
     return this.get('maxDimensions')[0];
