@@ -15,11 +15,13 @@ export default Route.extend({
     let currentId = params.id
     let queue = this.get('cluesQueue');
     return RSVP.hash({
-      currentClue: queue.load(currentId)
+      currentClue: queue.load(currentId),
     })
   },
 
   afterModel(model) {
+    this.controllerFor('clue').set('onLastClue', this.get('cluesQueue.onLastClue'));
+
     let clue = model.currentClue;
     this.set('headData.title', clue.get('title'));
     let clueImage = (get(clue, 'image.url') || get(clue, 'embed.thumbnail_url'));

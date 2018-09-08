@@ -40,6 +40,7 @@ Router.map(function() {
     this.route('clue', {path: '/:id'});
   });
   this.route('preview');
+  this.route('solve', {path: 'solve-the-mystery'});
 });
 
 export default Router;

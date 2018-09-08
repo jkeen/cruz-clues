@@ -164,7 +164,8 @@ a {
     letter-spacing: 0.5px;
     text-decoration: none;
     padding: 7px 15px;
-
+    margin-bottom: 15px;
+    
     &:active {
       background: #2D5F8F;;
     }
@@ -184,11 +185,16 @@ a {
   text-transform: uppercase;
   letter-spacing: 1px;
 
+  .links {
+    a + a {
+      padding: 0 10px;
+      border-left: 1px solid #FFF;
+    }
+  }
+
   .made-by {
-    border-left: 1px solid #FFF;
-    border-right: 1px solid #FFF;
-    margin: 0 10px;
-    padding: 0 10px;
+    display: block;
+    margin-top: 20px;
   }
 }
 
@@ -232,12 +238,49 @@ a {
   }
 }
 
-.animated-background {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+.do-something {
+  background-color: rgba(0, 0, 0, 0.8);
+
+  padding: 5px;
+  text-align: left;
+
+  h1 {
+    font-size: 25px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  @include media(">tablet") {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px 50px;
+  }
+
+  max-width: 600px;
+
+  a {
+    text-decoration: underline;
+    color: red;
+  }
+
+  .action-steps {
+    text-align: left;
+    h3 {
+      text-transform: uppercase;
+      font-size: 18px;
+      text-align: left;
+    }
+    ol {
+      text-align: left;
+
+      li {
+        padding: 5px 0;
+      }
+    }
+  }
+
+  .sharing-buttons {
+    margin-top: 10px;
+  }
 }

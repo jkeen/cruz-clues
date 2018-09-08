@@ -1,0 +1,44 @@
+<div class="flex-container">
+  <div class="flex-header">
+    <h1 class="cruz-headline">Solve The Mystery</h1>
+    <h1 class="cruz-subhead">(of how Ted is in Office)</h1>
+  </div>
+
+  <div class="do-something">
+    <div class="action-steps">
+      <h3>If You Live in Texas:</h3>
+      <ol>
+        <li>
+          <a href="http://www.votetexas.gov/register-to-vote/" {{action 'trackRegisterClick' preventDefault=false}}>Register To Vote</a> or make sure you are registered!
+        </li>
+        <li>
+          Show up on November 6th and vote for <a href="https://betofortexas.com/">Beto</a>! Or make it easier on yourself and participate in early voting the week before. It's easy, and there's a voting location close to where you live.
+        </li>
+        <li>
+          Find a friend who thinks voting is dumb and drag them along to vote (and register) with you.
+        </li>
+      </ol>
+
+      <h3>If You Are A Human Living On This Planet:</h3>
+      <ol>
+        <li>
+          Support Beto O'Rourke and <a href="https://secure.actblue.com/donate/beto-homepage?refcode=cruzclues"  {{action 'trackDonateClick' preventDefault=false}}>donate to his campaign!</a>
+        </li>
+        <li>
+          Encourage and nag your Texas friends to show up and vote.
+        </li>
+        <li>
+          Spread the word about Cruz Clues!
+
+          <div class="sharing-buttons">
+            {{#fb-share-button url="https://cruzclues.com" quote="The evidence is all here."}}Share{{/fb-share-button}}
+            {{#twitter-share-button title="The evidence is all here." url="https://cruzclues.com" hashtags="cruzclues"}}Tweet{{/twitter-share-button}}
+            {{#gplus-share-button url="http://cruzclues.com"}}Share{{/gplus-share-button}}
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  {{site-footer class="flex-footer"}}
+</div>

@@ -6,6 +6,9 @@ export default Service.extend({
   fastboot  : service(),
   isFastBoot: computed.reads('fastboot.isFastBoot'),
   currentId : null,
+  onLastClue: computed('cluesIds', 'currentId', function() {
+    return this.get('clueIds').indexOf(this.get('currentId')) === (this.get('clueIds').length - 1);
+  }),
 
   init() {
     this.set('clueIds', []);
@@ -18,8 +21,15 @@ export default Service.extend({
   },
 
   load(id) {
+    if (this.get('nextId') !== id) {
+      let ids = this.get('clueIds')
+      ids.splice(ids.indexOf(id), 1)
+      ids.unshift(id);
+      this.set('clueIds', ids);
+    }
+
     if (this.get('clueIds').includes(id)) {
-      this.set('currentId', id);      
+      this.set('currentId', id);
     }
 
     let loading = new Promise((resolve) => {
