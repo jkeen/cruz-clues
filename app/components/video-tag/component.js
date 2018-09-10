@@ -11,7 +11,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this._videoUrl = this.videoUrl;
+    this._src = this.src;
     this.updated = false;
   },
 
@@ -30,10 +30,9 @@ export default Component.extend({
   },
 
   didUpdateAttrs()  {
-    if (this._videoUrl !== this.videoUrl) {
-      console.log('updated attributes');
+    if (this._src !== this.src) {
       this.element.load();
-      this._videoUrl = this.videoUrl;
+      this._src = this.src;
       this.onChange();
     }
     this._super(...arguments);

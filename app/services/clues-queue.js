@@ -33,7 +33,7 @@ export default Service.extend({
     }
 
     let loading = new Promise((resolve) => {
-      return this.get('store').findRecord('clue', id).then(record => {
+      return this.get('store').loadRecord('clue', id).then(record => {
         if (!this.get('isFastBoot') && ['image', 'gif'].includes(record.get('clueType'))) {
           let image = new window.Image()
           image.onload = function() {
