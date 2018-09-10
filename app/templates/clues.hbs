@@ -6,7 +6,11 @@
     <!-- If you needed any more -->
   </div>
 
-  {{outlet}}
+  {{#if isLoading}}
+    {{loading-spinner}}
+  {{else}}
+    {{outlet}}
+  {{/if}}
 
   <div class="flex-action">
     {{#if onLastClue}}

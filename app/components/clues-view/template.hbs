@@ -1,17 +1,15 @@
 <figure class="clue">
-  {{#if (eq clue.mediaType 'video') }}
-    <div class="clue-inner" style={{clueStyle}}>
-      {{video-player embed=clue.embed onPlay=(action (mut videoHasPlayed)) mediaWidth=maxWidth mediaHeight=maxHeight}}
-    </div>
-  {{else if (eq clue.mediaType 'image')}}
-    <div class="clue-inner" style="{{clueStyle}}">
+  <div class="clue-inner" style={{clueStyle}}>
+    {{#if isYoutubeVideo}}
+      {{youtube-player embed=clue.embed onPlay=(action (mut videoHasPlayed)) mediaWidth=maxWidth mediaHeight=maxHeight}}
+    {{else if isProvidedImage}}
+      {{image-tag src=clue.imageUrl width=maxWidth height=maxHeight}}
+    {{else if isLinkedImage}}
       {{image-tag src=clue.imageUrl width=maxWidth height=maxHeight onLoad=(action 'reportNaturalDimensions')}}
-    </div>
-  {{!-- {{else if (eq clue.mediaType 'embed')}}
-    <div class="clue-inner" style="{{clueStyle}}">
-      {{{clue.embed.html}}}
-    </div> --}}
-  {{/if}}
+    {{else if isLinkedVideoGif}}
+      {{video-tag videoUrl=(video-url clue.imageUrl) posterUrl=(poster-url clue.imageUrl) clueStyle=clueStyle onLoad=(action 'reportNaturalDimensions')}}
+    {{/if}}
+  </div>
   {{#if isReady}}
     <figcaption>
       {{{prismic-html clueText}}}

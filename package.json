@@ -59,10 +59,10 @@
     "ember-service-worker": "^0.6.12",
     "ember-service-worker-asset-cache": "^0.6.2",
     "ember-service-worker-cache-fallback": "^0.6.1",
-    "ember-simple-auth": "^1.7.0",
     "ember-social-share": "^0.3.4",
     "ember-source": "~3.1.0",
     "ember-truth-helpers": "^2.1.0",
+    "ember-url": "^0.6.0",
     "ember-web-app": "^2.3.0",
     "ember-youtube": "^0.9.1",
     "eslint-plugin-ember": "^5.0.0",
@@ -71,7 +71,8 @@
   "fastbootDependencies": [
     "fetch",
     "path",
-    "node-fetch"
+    "node-fetch",
+    "url"
   ],
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

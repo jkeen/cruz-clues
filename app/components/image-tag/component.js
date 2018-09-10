@@ -6,7 +6,9 @@ export default Component.extend({
   didInsertElement() {
     let _this = this;
     this.element.onload = function() {
-      _this.get('onLoad')(this.naturalWidth, this.naturalHeight)
+      if (_this.get('onLoad')) {
+        _this.get('onLoad')(this.naturalWidth, this.naturalHeight);
+      }
     }
     this.set('src', this.get('src'));
     this._super(...arguments);

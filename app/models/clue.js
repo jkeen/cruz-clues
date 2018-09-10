@@ -1,7 +1,6 @@
 import attr from 'ember-data/attr';
 import PrismicDocument from 'ember-data-prismic/models/prismic-document';
 import { computed } from '@ember/object';
-import { makeArray } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { or } from '@ember/object/computed';
 
@@ -19,7 +18,7 @@ export default PrismicDocument.extend({
   imageUrl: or('image.url', 'imageLink.url'),
 
   mediaWidth: computed('naturalWidth', 'image.dimensions{width,height}', 'clueType', 'embed{height,width}', function() {
-    if (['embed', 'imageLink'].includes(this.get('clueType'))) {
+    if (this.get('clueType') === 'imageLink') {
       return this.get('naturalWidth');
     }
     else if (this.get('mediaType') === 'image') {
@@ -31,7 +30,7 @@ export default PrismicDocument.extend({
   }),
 
   mediaHeight: computed('naturalHeight', 'image.dimensions{width,height}', 'clueType', 'embed{height,width}', function() {
-    if (['embed', 'imageLink'].includes(this.get('clueType'))) {
+    if (this.get('clueType') === 'imageLink') {
       return this.get('naturalHeight');
     }
     else if (this.get('mediaType') === 'image') {
@@ -42,18 +41,7 @@ export default PrismicDocument.extend({
     }
   }),
 
-  mediaType: computed('clueType', function() {
-    let imageTypes = makeArray(['gif', 'image', 'imageLink']);
-    if (imageTypes.includes(this.get('clueType'))) {
-      return 'image';
-    }
-    else if (this.get('clueType') === 'video') {
-      return 'video';
-    }
-    else {
-      return this.get('clueType');
-    }
-  }),
+  mediaType: computed.alias('clueType'),
 
   mediaAspectRatio: computed('mediaHeight', 'mediaWidth', function() {
     return this._precisionRound((this.get('mediaWidth') / this.get('mediaHeight')), 5);
