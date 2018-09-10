@@ -10,11 +10,21 @@ export default Component.extend({
 
   didInsertElement() {
     let _this = this;
-    let image = new Image()
-    image.onload = function() {
-      _this.get('onLoad')(this.naturalWidth, this.naturalHeight)
+
+    if (this.get('posterUrl') && this.get('onLoad')) {
+      let image = new Image()
+      image.onload = function() {
+        _this.get('onLoad')(this.naturalWidth, this.naturalHeight)
+      }
+      image.src = this.get('posterUrl');
     }
-    image.src = this.get('posterUrl');
+
+    else if (this.get('onLoad')) {
+      this.element.oncanplay = function() {
+        let dimensions = this.getBoundingClientRect();
+        _this.get('onLoad')(dimensions.width, dimensions.height);
+      }
+    }
 
     this._super(...arguments);
   }
