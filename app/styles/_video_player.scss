@@ -1,0 +1,24 @@
+
+.video-player-content {
+  position: relative;
+}
+
+.unmute-and-play-video {
+  background-color: #111;
+  opacity: 0.9;
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 13px;
+  position: absolute;
+  left: 10px;
+  bottom: 40px;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 10px;
+  border: 0;
+
+  &:hover {
+    background-color: #FFF;
+    color: #000;
+  }
+}

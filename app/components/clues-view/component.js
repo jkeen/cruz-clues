@@ -6,7 +6,7 @@ import { alias } from '@ember/object/computed';
 import URL from 'url';
 
 export default Component.extend(ResizeAware, {
-  classNames: ['clues-view'],
+  classNames: ['clues-view', 'flex-body'],
   classNameBindings: ['clue.mediaType', 'isFluid'],
   resizeWidthSensitive: true,
   resizeHeightSensitive: true,

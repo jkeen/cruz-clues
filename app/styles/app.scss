@@ -2,10 +2,17 @@
 @import "vendor/flexbox";
 @import "vendor/include_media";
 @import "helpers";
+@import "clues_view";
+@import "site_footer";
+@import "video_player";
 
 html {
   padding: 0;
   margin: 0;
+}
+
+a {
+  color: #FFF;
 }
 
 body {
@@ -28,14 +35,10 @@ body {
   overflow: scroll;
 }
 
-a {
-  color: #FFF;
-}
-
-.cruz-headline {
-  font-size: 30px;
+.headline-text {
+  font-size: 25px;
   line-height: 30px;
-  padding: 15px 30px 10px;
+  padding: 10px 30px 5px;
   margin-top: 0;
   border-bottom: 2px solid #FFF;
 
@@ -44,26 +47,33 @@ a {
   margin-bottom: 0;
   white-space: nowrap;
 
+  @include media(">phone") {
+    font-size: 35px;
+    line-height: 40px;
+  }
+
   @include media(">tablet") {
-    font-size: 60px;
-    line-height: 60px;
-    padding: 25px 75px 20px;
-    border-bottom: 5px solid #FFF;
+    font-size: 55px;
+    line-height: 55px;
+    padding: 25px 75px 10px;
+    border-bottom: 3px solid #FFF;
 
     background: url(/assets/star.png) left center no-repeat, url(/assets/star.png) right center no-repeat;
     background-size: 40px 40px;
-     // url(assets/star.png) right center no-repeat;
-
   }
 }
 
-.cruz-subhead {
-  margin: 10px 0 0;
-  font-size: 20px;
+.subhead-text {
+  margin: 5px 0 0;
+  font-size: 17px;
   padding-top:0;
   font-weight: normal;
   white-space: nowrap;
   letter-spacing: 3px;
+
+  @include media(">phone") {
+    font-size: 20px;
+  }
 
   @include media(">tablet") {
     font-size: 30px;
@@ -82,150 +92,56 @@ a {
   font-family: "Ledger";
 }
 
+.loading-spinner {
+  svg {
+    margin: auto auto;
+    circle {
+      fill: white;
+    }
+  }
+  text-align: center;
+}
+
+
+a.next-clue {
+  background: #49749D;
+  box-shadow: 0 10px 40px 0 rgba(0,0,0,0.50);
+  border-radius: 3px;
+  font-size: 20px;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  padding: 7px 15px;
+  margin-bottom: 15px;
+
+  &:active {
+    background: #2D5F8F;;
+  }
+  &.disabled {
+    cursor: default;
+    opacity: 0.3;
+  }
+}
+
 .flex-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  overflow: hidden;
+  height: auto;
+  @include media(">tablet") {
+    min-height: 100vh;
+  }
   justify-content: space-between;
   align-items: center;
-
-  .flex-header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .clues-view, .loading-spinner {
-    display: flex;
-    width: auto;
-    padding: 0;
-    flex-grow: 2;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  .loading-spinner {
-    svg {
-      margin: auto auto;
-      circle {
-        fill: white;
-      }
-    }
-    text-align: center;
-  }
-
-  .clues-view.video {
-    .video-player {
-      display: inline-block;
-    }
-
-    .video-player-content {
-      display: inline-block;
-      margin: auto auto;
-    }
-  }
-
-  figure.clue {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
-  }
-
-  @keyframes placeHolderShimmer{
-      0%{
-          background-position: -468px 0
-      }
-      100%{
-          background-position: 468px 0
-      }
-  }
-
-
-  .clue .clue-inner {
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeHolderShimmer;
-    animation-timing-function: linear;
-    background: #f6f7f8;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.1) 8%, rgba(255, 255, 255, 0.05) 18%, rgba(255, 255, 255, 0.1) 33%);
-    background-size: cover;
-    position: relative;
-    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.50);
-  }
-
-  .clue figcaption {
-    display: block;
-  }
-
-  .flex-action {
-    display: flex;
-    flex-direction: column;
-    height: 10vh;
-    align-content: center;
-    margin-bottom: 25px;
-  }
-
-  a.next-clue {
-    background: #49749D;
-    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.50);
-    border-radius: 3px;
-    font-size: 20px;
-    color: #FFFFFF;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    padding: 7px 15px;
-    margin-bottom: 15px;
-
-    &:active {
-      background: #2D5F8F;;
-    }
-    &.disabled {
-      cursor: default;
-      opacity: 0.3;
-    }
-  }
 }
-
-.flex-footer {
-  font-size: 15px;
-
-  @include media(">tablet") {
-    font-size: 14px;
-  }
-
-  opacity: 0.8;
-  padding-bottom: 25px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-
-  .links {
-    a + a {
-      padding: 0 10px;
-      border-left: 1px solid #FFF;
-    }
-  }
-
-  .made-by {
-    display: block;
-    margin-top: 20px;
-  }
-}
-
 
 .flex-container.is-fluid {
   height: auto;
 
-  .clues-view, .loading-spinner {
+  .flex-body {
     height: auto;
     min-height: 400px;
   }
-
 
   .flex-action {
     height: auto;
@@ -233,73 +149,89 @@ a {
   }
 }
 
-.video-player-content {
-  position: relative;
+.flex-header {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
 }
 
-.unmute-and-play-video {
-  background-color: #111;
-  opacity: 0.9;
-  color: #FFF;
-  text-transform: uppercase;
-  font-size: 13px;
-  position: absolute;
-  left: 10px;
-  bottom: 40px;
-  cursor: pointer;
-  border-radius: 0;
-  padding: 10px;
-  border: 0;
-
-  &:hover {
-    background-color: #FFF;
-    color: #000;
+.flex-body {
+  display: flex;
+  padding: 0;
+  flex-grow: 2;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 75vh;
+  @include media(">phone") {
+    min-height: 65vh;
+  }
+  @include media(">tablet") {
+    min-height: 0;
   }
 }
 
-.do-something {
-  background-color: rgba(0, 0, 0, 0.8);
+.flex-action {
+  display: flex;
+  flex-direction: column;
+  @include media(">phone") {
+    height: 15vh;
+  }
+  @include media(">tablet") {
+    height: auto;
+  }
+  align-content: center;
+  margin-bottom: 25px;
+}
 
-  padding: 5px;
+
+.solve-the-mystery {
+  background-color: rgba(0, 0, 0, 0.8);
+  flex-grow: 0!important;
+  min-height: 0!important;
+  height: auto!important;
+  padding: 10px;
+  margin: 30px auto;
   text-align: left;
 
-  h1 {
-    font-size: 25px;
-  }
-  h2 {
-    font-size: 20px;
-  }
-
-  @include media(">tablet") {
+  @include media(">620px") {
     text-align: center;
     margin: 20px auto;
     padding: 20px 50px;
+    font-size: 20px;
   }
 
   max-width: 600px;
+
+  .sharing-buttons {
+    margin-top: 10px;
+  }
 
   a {
     text-decoration: underline;
     color: red;
   }
+}
 
-  .action-steps {
-    text-align: left;
-    h3 {
-      text-transform: uppercase;
-      font-size: 18px;
-      text-align: left;
-    }
-    ol {
-      text-align: left;
+.solve-the-mystery-steps {
+  text-align: left;
+}
 
-      li {
-        padding: 5px 0;
-      }
-    }
+.solve-the-mystery-steps-header {
+  text-transform: uppercase;
+  font-size: 15px;
+  text-align: left;
+  @include media(">620px") {
+    font-size: 20px;
   }
+}
 
-  .sharing-buttons {
-    margin-top: 10px;
+.solve-the-mystery-steps-list {
+  text-align: left;
+
+  li {
+    padding: 5px 0;
   }
 }
