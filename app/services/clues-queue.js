@@ -64,9 +64,6 @@ export default Service.extend({
   }),
 
   shuffle(array) {
-
-    return array
-
     let counter = array.length;
     // While there are elements in the array
     while (counter > 0) {

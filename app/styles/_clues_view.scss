@@ -27,6 +27,10 @@
   padding: 0;
 }
 
+.clue video {
+  width: 100%;
+}
+
 .clue .clue-inner {
   animation-duration: 1s;
   animation-fill-mode: forwards;
@@ -42,4 +46,8 @@
 
 .clue figcaption {
   display: block;
+}
+
+.clues-view-video-tag {
+  width: 100%;
 }

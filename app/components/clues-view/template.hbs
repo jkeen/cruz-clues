@@ -7,7 +7,7 @@
     {{else if isLinkedImage}}
       {{image-tag src=clue.imageUrl width=maxWidth height=maxHeight onLoad=(action 'reportNaturalDimensions')}}
     {{else if isLinkedVideoGif}}
-      {{video-tag videoUrl=(video-url clue.imageUrl) posterUrl=(poster-url clue.imageUrl) clueStyle=clueStyle onLoad=(action 'reportNaturalDimensions')}}
+      {{video-tag videoUrl=(video-url clue.imageUrl) posterUrl=(poster-url clue.imageUrl) clueStyle=cluseStyle onLoad=(action 'reportNaturalDimensions')}}
     {{/if}}
   </div>
   {{#if isReady}}
