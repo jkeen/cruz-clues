@@ -8,7 +8,7 @@ export default Component.extend({
   muted: 'muted',
   loop: 'loop',
 
-  didInsertElement() {
+  onChange() {
     let _this = this;
 
     if (this.get('posterUrl') && this.get('onLoad')) {
@@ -18,14 +18,22 @@ export default Component.extend({
       }
       image.src = this.get('posterUrl');
     }
-
     else if (this.get('onLoad')) {
       this.element.oncanplay = function() {
         let dimensions = this.getBoundingClientRect();
         _this.get('onLoad')(dimensions.width, dimensions.height);
       }
     }
+  },
 
+  didInsertElement() {
+    this.onChange();
     this._super(...arguments);
-  }
+  },
+
+  didUpdateAttrs() {
+    this.element.load();
+    this.onChange();
+    this._super(...arguments);
+  },
 });
