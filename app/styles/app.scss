@@ -5,6 +5,7 @@
 @import "clues_view";
 @import "site_footer";
 @import "video_player";
+@import "loader";
 
 html {
   padding: 0;
@@ -140,7 +141,7 @@ a.next-clue {
 
   .flex-body {
     height: auto;
-    min-height: 400px;
+    // min-height: 400px;
   }
 
   .flex-action {
@@ -164,7 +165,7 @@ a.next-clue {
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
-  min-height: 75vh;
+  min-height: 70vh;
   @include media(">phone") {
     min-height: 65vh;
   }
