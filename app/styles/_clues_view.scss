@@ -46,6 +46,12 @@
 
 .clue figcaption {
   display: block;
+  text-align: center;
+  font-size: 18px;
+
+  @include media(">phone") {
+    font-size: 20px;
+  }
 }
 
 .clues-view-video-tag {

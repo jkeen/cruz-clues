@@ -2,14 +2,12 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'video',
-  attributeBindings:['preload', 'autoplay', 'muted', 'loop', 'playsInline:webkit-playsinline',
-'fullScreen:allow-fullscreen'],
+  attributeBindings:['preload', 'autoplay', 'muted', 'loop', 'playsInline:webkit-playsinline', 'playsInline'],
   preload: 'auto',
   autoplay: 'autoplay',
   muted: 'muted',
-  loop: 'loop',
-  playsInline: "true",
-  fullScreen: "false",
+  loop: true,
+  playsInline: 'true',
   classNames: ['clues-view-video-tag'],
 
   init() {
