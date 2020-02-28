@@ -54,7 +54,7 @@
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^0.12.1",
-    "ember-resize": "^0.2.2",
+    "ember-resize": "^0.3.4",
     "ember-resolver": "^4.0.0",
     "ember-service-worker": "^0.6.12",
     "ember-service-worker-asset-cache": "^0.6.2",
