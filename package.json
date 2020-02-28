@@ -49,7 +49,7 @@
     "ember-data": "~3.1.0",
     "ember-data-storefront": "^0.13.2",
     "ember-export-application-global": "^2.0.0",
-    "ember-fetch": "^5.1.1",
+    "ember-fetch": "^7.0.1",
     "ember-get-config": "^0.2.4",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
