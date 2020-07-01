@@ -27,18 +27,11 @@ module.exports = function(environment) {
 
     metricsAdapters: [
       {
-        name: 'GoogleAnalytics',
-        environments: ['development', 'production'],
+        name: 'Piwik',
+        environments: ['production'],
         config: {
-          id: 'UA-719104-13',
-          // Use `analytics_debug.js` in development
-          debug: false,
-          // Use verbose tracing of GA events
-          trace: false,
-          // Ensure development env hits aren't sent to GA
-          sendHitTask: environment !== 'development',
-          // Specify Google Analytics plugins
-          require: ['ecommerce']
+          piwikUrl: 'https://analytics.cruzclues.com',
+          siteId: 5
         }
       }
     ],

@@ -19,14 +19,14 @@ export default Controller.extend({
 
   actions: {
     trackComplaintClick() {
-      get(this, 'metrics').trackEvent('GoogleAnalytics', {
+      get(this, 'metrics').trackEvent('Piwik', {
          category: 'ui-interaction',
          action: 'clicked-complaint-link',
          value: window.document.location.href
       });
     },
     trackTipClick() {
-      get(this, 'metrics').trackEvent('GoogleAnalytics', {
+      get(this, 'metrics').trackEvent('Piwik', {
          category: 'ui-interaction',
          action: 'clicked-submit-a-clue-link',
          value: window.document.location.href
