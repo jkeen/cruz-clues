@@ -5501,10 +5501,10 @@ ember-qunit@^3.5.0:
     ember-cli-test-loader "^2.2.0"
     qunit "~2.6.0"
 
-ember-resize@^0.2.2:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/ember-resize/-/ember-resize-0.2.4.tgz#a8fc891e4f7728c0e4a1b1d35ab11f9f0e74602e"
-  integrity sha512-seUJUNm6f1P+y9cUMMDsKZCTSKSTqo/iV9q3H9+KkbJXZvW3NBeHOjc4Vj1R6jl8vmuJTSx50MnPy1IFNiQo5Q==
+ember-resize@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/ember-resize/-/ember-resize-0.3.4.tgz#2ee19377213ca1e13eb6bce5903ad493e9bbbe2d"
+  integrity sha512-8FM8DzKv9wr70o1OPX7357qxlVvcPao9Ex0n8uoqHu8i2sKUK34YFeu8wtTkr65pProWRFCdkf957v/tXSd0KA==
   dependencies:
     ember-cli-babel "^7.1.0"
     ember-cli-htmlbars "^3.0.0"
