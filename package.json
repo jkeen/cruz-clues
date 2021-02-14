@@ -75,7 +75,7 @@
     "url"
   ],
   "engines": {
-    "node": "10.*"
+    "node": "12.*"
   },
   "dependencies": {
     "abortcontroller-polyfill": "^1.1.9",
