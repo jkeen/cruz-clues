@@ -4876,7 +4876,7 @@ ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.1.0, e
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.23.0, ember-cli-babel@^7.7.3:
+ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.23.0, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.3:
   version "7.23.1"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.23.1.tgz#d1517228ede08a5d4b045c78a7429728e956b30b"
   integrity sha512-qYggmt3hRs6QJ6cRkww3ahMpyP8IEV2KFrIRO/Z6hu9MkE/8Y28Xd5NjQl6fPV3oLoG0vwuHzhNe3Jr7Wec8zw==
@@ -5345,12 +5345,12 @@ ember-copy@^1.0.0:
     prismic-dom "^2.0.6"
     prismic-javascript "^2.0.3"
 
-ember-data-storefront@^0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/ember-data-storefront/-/ember-data-storefront-0.13.2.tgz#dd98f720bc637a4c064e0a7aca769646dc522bfe"
-  integrity sha512-p29aKlZS10tOUj3ET6P8qVvI9BEy22FNTk/07bh7ujSkheEhg9IOEEgPBlTltw3L3+8QyN9foNb7MJIwrN84Lw==
+ember-data-storefront@^0.18.1:
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/ember-data-storefront/-/ember-data-storefront-0.18.1.tgz#17d0c7205308e494eb6bb5ac7e37ff06893a6213"
+  integrity sha512-yTt/KAYlUv74jXkwMEQu/kFtK44JGshzk6n5ykzD88EGz9Ldaq7YLN3SACy207XEr91pbezAEQN/9gnxUkLGXA==
   dependencies:
-    ember-cli-babel "^6.6.0"
+    ember-cli-babel "^7.5.0"
     global "^4.3.2"
 
 ember-data@~3.1.0:
